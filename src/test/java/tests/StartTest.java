@@ -2,44 +2,60 @@ package tests;
 
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Factory;
 import org.testng.annotations.Test;
 import runner.BaseTest;
 
 public class StartTest extends BaseTest {
-    @Test
-    public void testAkcii() {
-        String str = openBaseURL()
-                .clickAkcii()
-                .getPageText();
+    private String medicine = "";
 
-        Assert.assertTrue(str.contains("Акції"));
+//    @Factory(dataProvider = "dp")
+    public StartTest(String a) {
+        this.medicine = a;
+
     }
 
-    @DataProvider(name = "data-provider")
-    public Object[][] dataProviderMethod() {
 
-        return new Object[][]{{"Біфрен"}, {"Ангіноваг"}};
-    }
 
-    @Test(dataProvider = "data-provider")
-    public void testBuyMedicine(String str) {
+//    @Test
+//    public void testAkcii() {
+//        String str = openBaseURL()
+//                .clickAkcii()
+//                .getPageText();
+//
+//        Assert.assertTrue(str.contains("Акції"));
+//    }
+
+//    @DataProvider(name = "dp")
+//    public Object[][] dataProviderMethod() {
+//
+//        return new Object[][]{{"Біфрен"}, {"Ангіноваг"}};
+//    }
+
+    @Test//(dataProvider = "dp")
+    public void testBuyMedicine() {
         openBaseURL()
-                .inputSearch(str)
+                .inputSearch(medicine)
                 .clickSearch()
-                .clickMedicine(str)
+                .clickMedicine(medicine)
                 .clickBuy()
                 .clickInBasket();
-        System.out.println("add" + str);
+        System.out.println("add" + medicine);
 //        Assert.assertTrue();
     }
 
-    @Test(dataProvider = "data-provider", dependsOnMethods = "testBuyMedicine")
-    public void test(String str) {
+    @Test(dependsOnMethods = "testBuyMedicine")
+    public void test() {
         String actualResult = openBaseURL()
-                .clickBasket()
-                .clickDelete(str)
+                .inputSearch(medicine)
+                .clickSearch()
+                .clickMedicine(medicine)
+                .clickBuy()
+                .clickInBasket()
+                .clickDelete(medicine)
                 .getTextBasketEmpty();
 
         Assert.assertEquals(actualResult, "Ваш кошик покупок пустий");
     }
 }
+
