@@ -6,7 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import runner.BaseModel;
 
-public class StartPage extends BaseModel {
+public class StartPage extends BasePage {
+
+
     @FindBy(linkText = "Акції")
     private WebElement akcii;
 

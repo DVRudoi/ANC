@@ -6,9 +6,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BaseModel {
-    private WebDriver driver;
+    protected WebDriver driver;
     private WebDriverWait wait;
     private Actions actions;
+
 
     protected WebDriver getDriver() {
         return driver;
@@ -29,10 +30,11 @@ public class BaseModel {
 
         return actions;
     }
-
     public BaseModel(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(getDriver(), this);
     }
+
+
 
 }

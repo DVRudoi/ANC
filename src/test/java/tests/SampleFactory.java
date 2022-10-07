@@ -12,8 +12,8 @@ public class SampleFactory {
     @DataProvider(name="dp")
     public static Object[][] createData() {
         return new Object[][] {
-                new Object[] { new String("Біфрен") },
-                new Object[] { new String("Ангіноваг") }
+                new Object[] {("Біфрен") },
+                new Object[] {("Ангіноваг") }
         };
     }
 

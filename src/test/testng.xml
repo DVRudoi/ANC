@@ -1,6 +1,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Test Suite" group-by-instances="true">
     <test name="Test">
+        <groups>
+            <run>
+                <include name="l" />
+            </run>
+        </groups>
         <classes>
             <class name="tests.SampleFactory"/>
         </classes>
